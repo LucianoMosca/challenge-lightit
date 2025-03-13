@@ -1,6 +1,6 @@
 # challenge-lightit
 
-Disclaimer: Even though I understand that the preferred technology for this challenge's backend is Laravel, due to the very short time window for this challenge and my extremely tight personal schedule, I decided to go with Node for the backend, there is also space for improvement on the UI due to the above mentioned time conditions. However, I would gladly refactor this project’s backend into Laravel and enhace the user interface if I could have a couple of weeks to learn and fully immerse myself in proper Laravel training :)
+Disclaimer: Even though I understand that the preferred technology for this challenge's backend is Laravel, due to the very short time window for this challenge and my extremely tight personal schedule, I decided to go with Node for the backend (since I know more about Node than what I know about Laravel), there is also space for improvement on the UI due to the above mentioned time conditions. However, I would gladly refactor this project’s backend into Laravel and enhace the user interface if I could have a couple of weeks to learn and fully immerse myself in proper Laravel training :)
 I also understand the gitflow used in this project is somewhat rudimentary and the commits were quite big or even unorganized, again, due to my lack of available free time.
 
 Besides all of this, this challenge was quite fun!
