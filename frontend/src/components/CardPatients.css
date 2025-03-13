@@ -1,0 +1,85 @@
+.patient-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;
+}
+
+.patient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+.patient-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.patient-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  background-color: var(--background-light);
+  border: 2px solid var(--primary-color);
+}
+
+.patient-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.patient-info {
+  margin-top: 12px;
+}
+
+.patient-detail {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.patient-detail-icon {
+  margin-right: 8px;
+  color: var(--primary-color);
+}
+
+.patient-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.patient-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 500;
+}
+
+.patient-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.patient-button.danger {
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.patient-button.danger:hover {
+  background-color: var(--error-color);
+  color: white;
+}
