@@ -1,7 +1,7 @@
 const Bull = require('bull');
 const nodemailer = require('nodemailer');
 
-// here we config Redis and Bull, this will be in charge of sending emails asynchronously to improve perfrmance
+//Redis and Bull
 const emailQueue = new Bull('email', {
   redis: {
     host: process.env.REDIS_HOST || 'redis',
@@ -14,29 +14,45 @@ const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST || 'mailhog',
   port: process.env.MAIL_PORT || 1025,
   secure: false,
-  auth: {
-    user: process.env.MAIL_USER || null,
-    pass: process.env.MAIL_PASS || null
-  }
+  auth: null, 
+  ignoreTLS: true,
+  authMethod: 'NONE'
 });
 
 //email processor
 emailQueue.process('patientRegistration', async (job) => {
-  const { email, fullName } = job.data;
-  
-  const mailOptions = {
-    from: process.env.MAIL_FROM || 'no-reply@hospital.com',
-    to: email,
-    subject: 'Registration Confirmation',
-    html: `
+  try {
+    const { email, fullName } = job.data;
+
+    const mailOptions = {
+      from: process.env.MAIL_FROM || 'no-reply@hospital.com',
+      to: email,
+      subject: 'Registration Confirmation',
+      html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <p>Hello ${fullName}, this is an email</p>
+        <p>Hello ${fullName}, this is an email!</p>
       </div>
     `
-  };
-  
-  return transporter.sendMail(mailOptions);
+    };
+
+    return transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Failed to send email: ', error);
+    throw error;
+  }
 });
 
-//we export the queue so we can use it in other parts of the app
+emailQueue.on('failed', (job, error) => {
+
+  console.error(`Job ${job.id} failed with error: ${error.message}`);
+});
+
+emailQueue.on('error', (error) => {
+  console.error('Bull queue error:', error);
+});
+
+emailQueue.on('completed', (job, result) => {
+  console.log(`Job ${job.id} completed successfully`);
+});
+
 module.exports = emailQueue;

@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+      - ./uploads:/app/uploads
       - /app/node_modules
     depends_on:
       - db
@@ -29,17 +30,17 @@ services:
       - MAIL_FROM=no-reply@patients.com
 
   #frontend react
-  # frontend:
-    # build:
-    #   context: ./frontend
-    #   dockerfile: Dockerfile
-    # ports:
-    #   - "3000:3000"
-    # volumes:
-    #   - ./frontend:/app
-    #   - /app/node_modules
-    # depends_on:
-    #   - backend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
 
   #database postgres
   db:

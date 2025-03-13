@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 //serve static files for uploads
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static( path.resolve(process.cwd(), 'uploads')));
 
 //routes
 app.use('/api/patients', require('./routes/patientRoutes'));
