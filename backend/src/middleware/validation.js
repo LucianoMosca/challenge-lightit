@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 
 exports.validatePatient = [
   body('fullName')
-  // full name witha proper format
+  // full name with a proper format
     .notEmpty().withMessage('Full name is required')
     .matches(/^[a-zA-Z\s]+$/).withMessage('Full name should only contain letters'),
   

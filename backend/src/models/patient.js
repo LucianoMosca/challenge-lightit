@@ -4,7 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Patient extends Model {
     static associate(models) {
-      // TO-DO: check thissssss
     }
   }
   
